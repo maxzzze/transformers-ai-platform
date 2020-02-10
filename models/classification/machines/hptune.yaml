@@ -1,0 +1,59 @@
+trainingInput:
+  scaleTier: CUSTOM
+  masterType: standard_p100
+  hyperparameters:
+    goal: MAXIMIZE
+    hyperparameterMetricTag: f1
+    maxTrials: 50
+    maxParallelTrials: 10
+    enableTrialEarlyStopping: True
+    params:
+      - parameterName: num_train_epochs
+        type: INTEGER
+        minValue: 2
+        maxValue: 3
+        scaleType: UNIT_LINEAR_SCALE
+      - parameterName: max_seq_length
+        type: DISCRETE
+        discreteValues:
+        - 64
+        - 128
+        - 256
+        - 512
+      - parameterName: per_gpu_train_batch_size
+        type: DISCRETE
+        discreteValues:
+        - 2
+        - 4
+      - parameterName: gradient_accumulation_steps
+        type: INTEGER
+        minValue: 2
+        maxValue: 5
+        scaleType: UNIT_LINEAR_SCALE
+      - parameterName: learning_rate
+        type: DISCRETE
+        discreteValues:
+        - 2e-5
+      - parameterName: weight_decay
+        type: DISCRETE
+        discreteValues:
+        - 0.00
+        - 0.01
+      - parameterName: adam_epsilon
+        type: DISCRETE
+        discreteValues:
+        - 1e-8
+      - parameterName: max_grad_norm
+        type: DISCRETE
+        discreteValues:
+        - 1
+      - parameterName: warmup_steps
+        type: DISCRETE
+        discreteValues:
+        - 0
+      - parameterName: seq_func_params
+        type: DISCRETE
+        discreteValues:
+        - 16
+        - 32
+        - 128
